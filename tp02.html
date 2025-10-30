@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Student Attendance System</title>
+  <style>
+    body {
+      font-family: "Poppins", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #faf8f3;
+      color: #222;
+    }
+
+    header {
+      background: linear-gradient(135deg, #b8860b, #d4af37);
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #3a2e1f;
+      padding: 12px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 18px;
+      background: #6e5a35;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      background: #d4af37;
+      color: #3a2e1f;
+      transform: scale(1.05);
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 30px auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th, td {
+      border: 1px solid #d9c78d;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    th {
+      background: #f4e3b2;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #faf5e6;
+    }
+
+    .green { background: #c6efce !important; }
+    .yellow { background: #fff2cc !important; }
+    .red { background: #f8cbad !important; }
+
+    form {
+      margin-top: 25px;
+      background: #fdfbf3;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #e6d39e;
+    }
+
+    form label {
+      display: block;
+      margin-top: 10px;
+      font-weight: 600;
+      color: #3a2e1f;
+    }
+
+    form input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #d4af37;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    form span.error {
+      color: red;
+      font-size: 13px;
+    }
+
+    form button {
+      margin-top: 15px;
+      padding: 10px 18px;
+      background: #d4af37;
+      color: #3a2e1f;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    form button:hover {
+      background: #b8860b;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Student Attendance System</h1>
+  </header>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#attendance">Attendance List</a>
+    <a href="#add-student">Add Student</a>
+    <a href="#reports">Reports</a>
+    <a href="#logout">Logout</a>
+  </nav>
+
+  <main>
+    <!-- Attendance Table -->
+    <section id="attendance">
+      <h2>Attendance List</h2>
+      <table id="attendance-table">
+        <thead>
+          <tr>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th colspan="6">Session Attendance (S1–S6)</th>
+            <th colspan="6">Participation (P1–P6)</th>
+            <th>Absences</th>
+            <th>Participations</th>
+            <th>Message</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ahmed</td>
+            <td>Sara</td>
+            <td>✓</td><td>✓</td><td></td><td></td><td></td><td></td>
+            <td>✓</td><td></td><td></td><td>✓</td><td></td><td></td>
+            <td></td><td></td><td></td>
+          </tr>
+          <tr>
+            <td>Yacine</td>
+            <td>Ali</td>
+            <td>✓</td><td></td><td>✓</td><td>✓</td><td>✓</td><td>✓</td>
+            <td></td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td></td>
+            <td></td><td></td><td></td>
+          </tr>
+          <tr>
+            <td>Houcine</td>
+            <td>Rania</td>
+            <td>✓</td><td>✓</td><td></td><td>✓</td><td></td><td></td>
+            <td>✓</td><td></td><td></td><td>✓</td><td></td><td></td>
+            <td></td><td></td><td></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Add Student Form -->
+    <section id="add-student">
+      <h2>Add New Student</h2>
+      <form id="student-form" novalidate>
+        <label for="student-id">Student ID:</label>
+        <input id="student-id" name="student-id" type="text" />
+        <span id="id-error" class="error"></span>
+
+        <label for="last-name">Last Name:</label>
+        <input id="last-name" name="last-name" type="text" />
+        <span id="lname-error" class="error"></span>
+
+        <label for="first-name">First Name:</label>
+        <input id="first-name" name="first-name" type="text" />
+        <span id="fname-error" class="error"></span>
+
+        <label for="email">Email:</label>
+        <input id="email" name="email" type="email" />
+        <span id="email-error" class="error"></span>
+
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    const table = document.getElementById("attendance-table");
+
+    // ======= Attendance Calculation =======
+    function updateAttendance() {
+      const rows = table.querySelectorAll("tbody tr");
+
+      rows.forEach(row => {
+        const tds = row.querySelectorAll("td");
+        const attendanceCells = Array.from(tds).slice(2, 8);
+        const participationCells = Array.from(tds).slice(8, 14);
+
+        let absences = 0, participations = 0;
+
+        attendanceCells.forEach(cell => {
+          if (cell.textContent.trim() !== "✓") absences++;
+        });
+
+        participationCells.forEach(cell => {
+          if (cell.textContent.trim() === "✓") participations++;
+        });
+
+        const absCell = tds[14];
+        const parCell = tds[15];
+        const messageCell = tds[16];
+
+        absCell.textContent = absences;
+        parCell.textContent = participations;
+
+        row.classList.remove("green", "yellow", "red");
+
+        if (absences < 3) {
+          row.classList.add("green");
+          messageCell.textContent = "Good attendance – Excellent participation";
+        } else if (absences <= 4) {
+          row.classList.add("yellow");
+          messageCell.textContent = "Warning – attendance low – You need to participate more";
+        } else {
+          row.classList.add("red");
+          messageCell.textContent = "Excluded – too many absences – You need to participate more";
+        }
+      });
+    }
+
+    // ======= Clickable cells =======
+    table.addEventListener("click", (e) => {
+      if (e.target.tagName === "TD") {
+        const colIndex = e.target.cellIndex;
+        if (colIndex >= 2 && colIndex <= 13) { // Only attendance/participation cells
+          e.target.textContent = e.target.textContent.trim() === "✓" ? "" : "✓";
+          updateAttendance();
+        }
+      }
+    });
+
+    // Initial update when page loads
+    updateAttendance();
+
+    // ======= Form Validation =======
+    const form = document.getElementById("student-form");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      let valid = true;
+
+      const id = document.getElementById("student-id").value.trim();
+      const lname = document.getElementById("last-name").value.trim();
+      const fname = document.getElementById("first-name").value.trim();
+      const email = document.getElementById("email").value.trim();
+
+      const idError = document.getElementById("id-error");
+      const lnameError = document.getElementById("lname-error");
+      const fnameError = document.getElementById("fname-error");
+      const emailError = document.getElementById("email-error");
+
+      idError.textContent = lnameError.textContent = fnameError.textContent = emailError.textContent = "";
+
+      if (!/^[0-9]+$/.test(id)) {
+        idError.textContent = "Student ID must contain only numbers.";
+        valid = false;
+      }
+      if (!/^[A-Za-z]+$/.test(lname)) {
+        lnameError.textContent = "Last Name must contain only letters.";
+        valid = false;
+      }
+      if (!/^[A-Za-z]+$/.test(fname)) {
+        fnameError.textContent = "First Name must contain only letters.";
+        valid = false;
+      }
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        emailError.textContent = "Invalid email format.";
+        valid = false;
+      }
+
+      if (valid) {
+        alert("Form submitted successfully!");
+        form.reset();
+      }
+    });
+  </script>
+</body>
+</html>
