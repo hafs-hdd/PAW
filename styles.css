@@ -1,0 +1,179 @@
+/* ================================
+   GLOBAL STYLE
+================================ */
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fff8e1; /* soft creamy yellow */
+    color: #333;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* ================================
+   NAVIGATION (Centered, Modern)
+================================ */
+
+nav {
+    background: #d2a679; /* light brown */
+    padding: 12px 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    background: #b8860b; /* golden brown */
+    padding: 10px 16px;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: 0.25s;
+}
+
+nav ul li a:hover {
+    background: #8b6f04;
+    transform: translateY(-2px);
+}
+
+/* ================================
+   TABLE (Modern UI)
+================================ */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 22px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden; /* FIX: removes white empty column */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* header */
+thead {
+    background: #b8860b; /* golden brown */
+    color: white;
+}
+
+th {
+    text-align: center;
+    padding: 14px;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+
+/* body */
+td {
+    padding: 12px;
+    border-bottom: 1px solid #f1e1b6;
+    font-size: 15px;
+}
+
+/* zebra rows */
+tbody tr:nth-child(odd) {
+    background: #fff3cd; /* light yellow */
+}
+
+/* hover row effect */
+tbody tr:hover {
+    background: #ffe8a1;
+    transition: 0.25s;
+}
+
+/* IMPORTANT: fix mobile layout without causing white space */
+table {
+    display: table; /* FIX for white empty column */
+    table-layout: auto;
+    white-space: normal;
+}
+
+/* ================================
+   FORM (Clean Modern)
+================================ */
+
+form {
+    margin-top: 30px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+form label {
+    display: block;
+    margin-bottom: 16px;
+    font-weight: bold;
+    color: #6b4f1d;
+}
+
+form input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    border: 1px solid #cda670;
+    border-radius: 6px;
+    background: #fffdf5;
+    transition: 0.25s;
+}
+
+form input:focus {
+    border-color: #b8860b;
+    background: #fff7d1;
+    outline: none;
+}
+
+/* BUTTON */
+button {
+    margin-top: 10px;
+    padding: 12px 20px;
+    background: #b8860b;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.25s;
+}
+
+button:hover {
+    background: #8b6f04;
+    transform: translateY(-2px);
+}
+
+/* success message */
+#message {
+    margin-top: 10px;
+    font-weight: bold;
+    color: green;
+}
+
+/* ================================
+   RESPONSIVE DESIGN
+================================ */
+
+@media (max-width: 700px) {
+    nav ul {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    table, th, td {
+        font-size: 14px;
+    }
+}

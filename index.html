@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Attendance - Exercises 1 to 4</title>
+
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ===================== -->
+    <!-- NAVBAR (Exercise 3)   -->
+    <!-- ===================== -->
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#attendance-section">Attendance List</a></li>
+            <li><a href="#form-section">Add Student</a></li>
+            <li><a href="#reports">Reports</a></li>
+            <li><a href="#logout">Logout</a></li>
+        </ul>
+    </nav>
+
+    <br>
+
+    <div class="container">
+
+        <h1 id="home">Student Attendance System</h1>
+
+        <!-- ================================= -->
+        <!-- Exercise 1: Attendance Table      -->
+        <!-- ================================= -->
+
+        <h2 id="attendance-section">Attendance List</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Last Name</th>
+                    <th>First Name</th>
+                    <th>Course</th>
+                    <th>Session date</th>
+                    <th>Present</th>
+                    <th>Participated</th>
+                </tr>
+            </thead>
+
+            <tbody id="attendance-body">
+                <tr>
+                    <td>202301</td>
+                    <td>Ahmed</td>
+                    <td>Ali</td>
+                    <td>Networking</td>
+                    <td>2025-01-10</td>
+                    <td>Yes</td>
+                    <td>No</td>
+                </tr>
+
+                <tr>
+                    <td>202302</td>
+                    <td>Hassan</td>
+                    <td>Karim</td>
+                    <td>Web Development</td>
+                    <td>2025-01-10</td>
+                    <td>No</td>
+                    <td>No</td>
+                </tr>
+
+                <tr>
+                    <td>202303</td>
+                    <td>Samira</td>
+                    <td>Nour</td>
+                    <td>Database</td>
+                    <td>2025-01-10</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- ================================= -->
+        <!-- Exercise 2: Add Student FORM       -->
+        <!-- ================================= -->
+
+        <h2 id="form-section">Add New Student</h2>
+
+        <form id="add-student-form">
+
+            <label>
+                Student ID:
+                <input type="text" name="studentId" required>
+            </label>
+
+            <label>
+                Last Name:
+                <input type="text" name="lastLast" required>
+            </label>
+
+            <label>
+                First Name:
+                <input type="text" name="firstName" required>
+            </label>
+
+            <label>
+                Email:
+                <input type="email" name="email" required>
+            </label>
+
+            <button type="submit">Add Student</button>
+        </form>
+
+        <p id="message"></p>
+
+        <!-- Reports Placeholder -->
+        <h2 id="reports">Reports</h2>
+        <p>Reports section coming soon.</p>
+
+        <!-- Logout placeholder -->
+        <h2 id="logout">Logout</h2>
+        <p>Logout not implemented.</p>
+
+    </div>
+
+
+    <!-- ================================= -->
+    <!-- JavaScript: Add student to table   -->
+    <!-- ================================= -->
+
+    <script>
+        document.getElementById("add-student-form").addEventListener("submit", function(e){
+            e.preventDefault();
+
+            const id = e.target.studentId.value.trim();
+            const last = e.target.lastLast.value.trim();
+            const first = e.target.firstName.value.trim();
+            const email = e.target.email.value.trim();
+
+            const tbody = document.getElementById("attendance-body");
+
+            const tr = document.createElement("tr");
+
+            tr.innerHTML = `
+                <td>${id}</td>
+                <td>${last}</td>
+                <td>${first}</td>
+                <td>--</td>
+                <td>--</td>
+                <td>No</td>
+                <td>No</td>
+            `;
+
+            tbody.appendChild(tr);
+
+            document.getElementById("message").textContent = "Student added successfully!";
+            e.target.reset();
+        });
+    </script>
+
+</body>
+</html>
