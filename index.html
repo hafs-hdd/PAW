@@ -1,164 +1,205 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Attendance - Exercises 1 to 4</title>
-
-    <!-- Link CSS -->
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Attendance - Full Project (Tutorials 1 → 6)</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-    <!-- ===================== -->
-    <!-- NAVBAR (Exercise 3)   -->
-    <!-- ===================== -->
+  <!-- NAV -->
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#attendance-section">Attendance List</a></li>
+      <li><a href="#form-section">Add Student</a></li>
+      <li><a href="#reports">Reports</a></li>
+      <li><a href="#logout">Logout</a></li>
+    </ul>
+  </nav>
 
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#attendance-section">Attendance List</a></li>
-            <li><a href="#form-section">Add Student</a></li>
-            <li><a href="#reports">Reports</a></li>
-            <li><a href="#logout">Logout</a></li>
-        </ul>
-    </nav>
+  <div class="container">
 
-    <br>
+    <h1 id="home">Student Attendance System</h1>
 
-    <div class="container">
-
-        <h1 id="home">Student Attendance System</h1>
-
-        <!-- ================================= -->
-        <!-- Exercise 1: Attendance Table      -->
-        <!-- ================================= -->
-
-        <h2 id="attendance-section">Attendance List</h2>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Student ID</th>
-                    <th>Last Name</th>
-                    <th>First Name</th>
-                    <th>Course</th>
-                    <th>Session date</th>
-                    <th>Present</th>
-                    <th>Participated</th>
-                </tr>
-            </thead>
-
-            <tbody id="attendance-body">
-                <tr>
-                    <td>202301</td>
-                    <td>Ahmed</td>
-                    <td>Ali</td>
-                    <td>Networking</td>
-                    <td>2025-01-10</td>
-                    <td>Yes</td>
-                    <td>No</td>
-                </tr>
-
-                <tr>
-                    <td>202302</td>
-                    <td>Hassan</td>
-                    <td>Karim</td>
-                    <td>Web Development</td>
-                    <td>2025-01-10</td>
-                    <td>No</td>
-                    <td>No</td>
-                </tr>
-
-                <tr>
-                    <td>202303</td>
-                    <td>Samira</td>
-                    <td>Nour</td>
-                    <td>Database</td>
-                    <td>2025-01-10</td>
-                    <td>Yes</td>
-                    <td>Yes</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <!-- ================================= -->
-        <!-- Exercise 2: Add Student FORM       -->
-        <!-- ================================= -->
-
-        <h2 id="form-section">Add New Student</h2>
-
-        <form id="add-student-form">
-
-            <label>
-                Student ID:
-                <input type="text" name="studentId" required>
-            </label>
-
-            <label>
-                Last Name:
-                <input type="text" name="lastLast" required>
-            </label>
-
-            <label>
-                First Name:
-                <input type="text" name="firstName" required>
-            </label>
-
-            <label>
-                Email:
-                <input type="email" name="email" required>
-            </label>
-
-            <button type="submit">Add Student</button>
-        </form>
-
-        <p id="message"></p>
-
-        <!-- Reports Placeholder -->
-        <h2 id="reports">Reports</h2>
-        <p>Reports section coming soon.</p>
-
-        <!-- Logout placeholder -->
-        <h2 id="logout">Logout</h2>
-        <p>Logout not implemented.</p>
-
+    <!-- CONTROL BUTTONS -->
+    <div class="report-controls">
+      <button id="showReportBtn">📊 Show Report</button>
+      <button id="highlightExcellentBtn" class="highlight-btn">⭐ Highlight Excellent Students</button>
+      <button id="resetColorsBtn" class="reset-btn">🔄 Reset Colors</button>
     </div>
 
+    <!-- SORTING BUTTONS -->
+    <div class="sorting-controls">
+      <button id="sortAbsencesAsc" class="sort-btn absence-sort">
+        <span class="sort-icon">📈</span>
+        Sort by Absences (Ascending)
+      </button>
+      <button id="sortParticipationDesc" class="sort-btn participation-sort">
+        <span class="sort-icon">📉</span>
+        Sort by Participation (Descending)
+      </button>
+    </div>
 
-    <!-- ================================= -->
-    <!-- JavaScript: Add student to table   -->
-    <!-- ================================= -->
+    <!-- NAME SEARCH -->
+    <div class="search-container">
+      <label for="nameSearch">🔍 Search by Name:</label>
+      <input type="text" id="nameSearch" placeholder="Enter first or last name..." class="search-input">
+    </div>
 
-    <script>
-        document.getElementById("add-student-form").addEventListener("submit", function(e){
-            e.preventDefault();
+    <!-- TABLE -->
+    <h2 id="attendance-section">Attendance List</h2>
 
-            const id = e.target.studentId.value.trim();
-            const last = e.target.lastLast.value.trim();
-            const first = e.target.firstName.value.trim();
-            const email = e.target.email.value.trim();
+    <div class="table-wrap">
+      <table id="mainTable" role="table" aria-label="Attendance table">
+        <thead>
+          <tr>
+            <th rowspan="2" class="sortable">Last Name</th>
+            <th rowspan="2" class="sortable">First Name</th>
 
-            const tbody = document.getElementById("attendance-body");
+            <th colspan="2">S1</th>
+            <th colspan="2">S2</th>
+            <th colspan="2">S3</th>
+            <th colspan="2">S4</th>
+            <th colspan="2">S5</th>
+            <th colspan="2">S6</th>
 
-            const tr = document.createElement("tr");
+            <th rowspan="2" class="sortable">Absences</th>
+            <th rowspan="2" class="sortable">Participation</th>
+            <th rowspan="2" class="sortable">Message</th>
+          </tr>
+          <tr>
+            <th>P</th><th>Pa</th>
+            <th>P</th><th>Pa</th>
+            <th>P</th><th>Pa</th>
+            <th>P</th><th>Pa</th>
+            <th>P</th><th>Pa</th>
+            <th>P</th><th>Pa</th>
+          </tr>
+        </thead>
 
-            tr.innerHTML = `
-                <td>${id}</td>
-                <td>${last}</td>
-                <td>${first}</td>
-                <td>--</td>
-                <td>--</td>
-                <td>No</td>
-                <td>No</td>
-            `;
+        <tbody id="attendance-body">
 
-            tbody.appendChild(tr);
+          <!-- SAMPLE ROWS -->
+          <tr>
+            <td>Ahmed</td><td>Sara</td>
+            <td></td><td></td>
+            <td>✓</td><td></td>
+            <td>✓</td><td></td>
+            <td></td><td></td>
+            <td></td><td></td>
+            <td></td><td></td>
+            <td></td><td></td><td></td>
+          </tr>
 
-            document.getElementById("message").textContent = "Student added successfully!";
-            e.target.reset();
-        });
-    </script>
+          <tr>
+            <td>Yacine</td><td>Ali</td>
+            <td>✓</td><td></td>
+            <td>✓</td><td></td>
+            <td></td><td></td>
+            <td>✓</td><td>✓</td>
+            <td></td><td>✓</td>
+            <td></td><td>✓</td>
+            <td></td><td></td><td></td>
+          </tr>
+
+          <tr>
+            <td>Houcine</td><td>Rania</td>
+            <td>✓</td><td></td>
+            <td>✓</td><td></td>
+            <td>✓</td><td></td>
+            <td></td><td></td>
+            <td>✓</td><td></td>
+            <td></td><td></td>
+            <td></td><td></td><td></td>
+          </tr>
+
+          <tr>
+            <td>Benali</td><td>Fatima</td>
+            <td>✓</td><td>✓</td>
+            <td>✓</td><td>✓</td>
+            <td>✓</td><td>✓</td>
+            <td>✓</td><td>✓</td>
+            <td>✓</td><td>✓</td>
+            <td>✓</td><td>✓</td>
+            <td></td><td></td><td></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SORT MESSAGE -->
+    <div id="sortMessage" class="sort-message"></div>
+
+    <!-- REPORT AREA -->
+    <div id="reportArea" class="report-area hidden" aria-hidden="true">
+      <h2>Report</h2>
+      <p id="totalStudents">Total Students: 0</p>
+      <p id="presentCount">Present (students with ≥1 P): 0</p>
+      <p id="participationCount">Participated (students with ≥1 Pa): 0</p>
+
+      <h3>Chart</h3>
+      <div class="chart-container" aria-hidden="false">
+        <div class="bar">
+          <div id="barTotal" class="bar-fill" style="height:0px"></div>
+          <div class="bar-label">Total</div>
+        </div>
+
+        <div class="bar">
+          <div id="barPresent" class="bar-fill bar-present" style="height:0px"></div>
+          <div class="bar-label">Present</div>
+        </div>
+
+        <div class="bar">
+          <div id="barParticipation" class="bar-fill bar-part" style="height:0px"></div>
+          <div class="bar-label">Participated</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADD STUDENT FORM -->
+    <h2 id="form-section">Add New Student</h2>
+
+    <form id="add-student-form" class="add-form" autocomplete="off">
+      <label>Student ID:
+        <input type="text" name="studentId" required>
+      </label>
+
+      <label>Last Name:
+        <input type="text" name="lastLast" required>
+      </label>
+
+      <label>First Name:
+        <input type="text" name="firstName" required>
+      </label>
+
+      <label>Email:
+        <input type="email" name="email" required>
+      </label>
+
+      <button type="submit" class="primary-btn">Add Student</button>
+    </form>
+
+    <p id="message" class="form-message" aria-live="polite"></p>
+
+  </div>
+
+  <!-- MODAL FOR STUDENT INFO -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box">
+      <h3>📋 Student Information</h3>
+      <p id="modalContent"></p>
+      <button id="closeModal">Close</button>
+    </div>
+  </div>
+
+  <!-- jQuery CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <!-- SCRIPT -->
+  <script src="script.js"></script>
 
 </body>
 </html>
