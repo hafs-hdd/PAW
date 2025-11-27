@@ -1,0 +1,27 @@
+[
+    {
+        "student_id": 2025,
+        "status": "absent",
+        "date": "2025-11-27"
+    },
+    {
+        "student_id": 1002,
+        "status": "present",
+        "date": "2025-11-27"
+    },
+    {
+        "student_id": 2024,
+        "status": "absent",
+        "date": "2025-11-27"
+    },
+    {
+        "student_id": 1001,
+        "status": "absent",
+        "date": "2025-11-27"
+    },
+    {
+        "student_id": 1003,
+        "status": "present",
+        "date": "2025-11-27"
+    }
+]
